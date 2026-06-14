@@ -7,12 +7,8 @@
     }
 
     :root {
-      --cream: #F2F0EB;
       --dark: #0D0D0D;
       --dark-2: #141414;
-      --muted: #888;
-      --muted-light: #aaa;
-      --text-dark: #1a1a1a;
     }
 
     html {
@@ -21,8 +17,8 @@
 
     body {
       font-family: 'Inter', sans-serif;
-      background: var(--cream);
-      color: var(--text-dark);
+      background: var(--dark);
+      color: #fff;
       overflow-x: hidden;
     }
 
@@ -44,7 +40,7 @@
       font-size: 15px;
       font-weight: 500;
       letter-spacing: -0.01em;
-      color: var(--text-dark);
+      color: #fff;
       text-decoration: none;
       transition: opacity 0.2s;
     }
@@ -60,7 +56,7 @@
     .nav-links a {
       font-size: 14px;
       font-weight: 400;
-      color: var(--text-dark);
+      color: #fff;
       text-decoration: none;
       opacity: 0.6;
       transition: opacity 0.2s;
@@ -68,93 +64,20 @@
 
     .nav-links a:hover { opacity: 1; }
 
-    /* ── HERO ── */
-    .hero {
-      min-height: 46vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 0 64px 56px;
-      position: relative;
-      background: var(--cream);
-      overflow: hidden;
-    }
-
-    /* Soft orb, corner accent */
-    .hero-orb {
-      position: absolute;
-      width: 50vw;
-      height: 50vw;
-      max-width: 620px;
-      max-height: 620px;
-      border-radius: 50%;
-      background: radial-gradient(ellipse at 38% 44%,
-        rgba(196, 181, 253, 0.5) 0%,
-        rgba(167, 139, 250, 0.28) 35%,
-        rgba(224, 201, 248, 0.14) 60%,
-        transparent 80%
-      );
-      top: -10%;
-      right: -8%;
-      pointer-events: none;
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      max-width: 600px;
-    }
-
-    .hero-meta {
-      font-size: 12px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 20px;
-    }
-
-    .hero-headline {
-      font-size: clamp(22px, 2.8vw, 34px);
-      font-weight: 500;
-      letter-spacing: -0.02em;
-      line-height: 1.35;
-      color: var(--text-dark);
-      margin-bottom: 16px;
-      max-width: 560px;
-    }
-
-    .hero-bio {
-      font-size: 15px;
-      line-height: 1.7;
-      color: #555;
-      max-width: 460px;
-    }
-
-    /* Wave divider */
-    .wave-wrap {
-      position: relative;
-      background: var(--cream);
-      line-height: 0;
-    }
-
-    .wave-wrap svg {
-      display: block;
-      width: 100%;
-    }
-
     /* ── DARK SECTION ── */
     .dark-section {
       background: var(--dark);
       padding: 80px 48px 120px;
     }
 
-    /* ── INTRO PANELS ── */
-    .intro-row {
-      display: flex;
-      align-items: stretch;
-      gap: 16px;
+    /* ── INTRO GRID ── */
+    .intro-grid {
+      display: grid;
+      grid-template-columns: minmax(220px, 1fr) 3.2fr;
+      align-items: start;
+      gap: 48px 16px;
       max-width: 1080px;
-      margin: 0 auto 56px;
+      margin: 0 auto;
     }
 
     .intro-panel {
@@ -164,8 +87,13 @@
       padding: 32px;
     }
 
-    .intro-about { flex: 0 0 30%; }
-    .intro-why { flex: 1; }
+    .intro-about { grid-column: 1; grid-row: 1; }
+    .intro-why { grid-column: 2; grid-row: 1; }
+
+    .featured-block {
+      grid-column: 2;
+      grid-row: 2;
+    }
 
     .intro-label {
       font-size: 12px;
@@ -216,8 +144,7 @@
 
     /* ── FEATURED ── */
     .featured-label {
-      max-width: 1080px;
-      margin: 0 auto 32px;
+      margin-bottom: 32px;
       font-size: 13px;
       letter-spacing: 0.1em;
       text-transform: uppercase;
@@ -229,8 +156,6 @@
       grid-template-columns: 1fr 1fr 1fr;
       grid-template-rows: repeat(2, 240px);
       gap: 16px;
-      max-width: 1080px;
-      margin: 0 auto;
     }
 
     .card-unify,
@@ -452,10 +377,11 @@
     /* ── RESPONSIVE ── */
     @media (max-width: 720px) {
       nav { padding: 20px 24px; }
-      .hero { min-height: auto; padding: 120px 24px 40px; }
-      .dark-section { padding: 60px 24px 80px; }
-      .intro-row { flex-direction: column; margin-bottom: 32px; }
-      .intro-about { flex: 1; }
+      .dark-section { padding: 96px 24px 80px; }
+      .intro-grid { grid-template-columns: 1fr; }
+      .intro-about { grid-column: 1; grid-row: 1; }
+      .intro-why { grid-column: 1; grid-row: 2; }
+      .featured-block { grid-column: 1; grid-row: 3; }
       .intro-panel { padding: 24px; }
       .project-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
       .project-grid .project-card { aspect-ratio: 4/3; grid-row: span 1 !important; }
