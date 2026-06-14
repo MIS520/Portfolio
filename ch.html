@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Hub. — Michelle TK</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f5f4f0;
+      --white: #ffffff;
+      --border: #e5e4e0;
+      --text: #111;
+      --muted: #999;
+      --subtle: #f0efeb;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-back {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--text); }
+
+    .nav-title {
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+    }
+
+    .nav-right {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* ── PAGE ── */
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 96px 40px 80px;
+    }
+
+    /* ── HERO STRIP ── */
+    .cs-hero {
+      padding: 60px 0 48px;
+      border-bottom: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: end;
+    }
+
+    .cs-title {
+      font-size: clamp(48px, 6vw, 80px);
+      font-weight: 300;
+      letter-spacing: -0.05em;
+      line-height: 1;
+      color: var(--text);
+    }
+
+    .cs-tagline {
+      font-size: 15px;
+      line-height: 1.65;
+      color: #555;
+      max-width: 380px;
+    }
+
+    .cs-tagline a {
+      color: var(--text);
+      text-decoration: underline;
+      text-decoration-color: var(--border);
+    }
+
+    /* Recognition line */
+    .recognition-line {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.7;
+      padding: 14px 0 0;
+    }
+
+    /* ── META ROW ── */
+    .meta-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .meta-cell {
+      padding: 20px 0 20px;
+      border-right: 1px solid var(--border);
+      padding-right: 24px;
+      margin-right: 24px;
+    }
+    .meta-cell:last-child { border-right: none; margin-right: 0; padding-right: 0; }
+
+    .meta-key {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 5px;
+    }
+
+    .meta-val {
+      font-size: 13px;
+      color: var(--text);
+    }
+
+    /* ── OVERVIEW 3-COL ── */
+    .overview {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr 1fr;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 0;
+    }
+
+    .ov-panel {
+      padding: 40px 32px 40px 0;
+      border-right: 1px solid var(--border);
+      margin-right: 32px;
+    }
+    .ov-panel:last-child { border-right: none; margin-right: 0; padding-right: 0; }
+
+    .ov-label {
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    .ov-heading {
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+
+    .ov-body {
+      font-size: 13.5px;
+      line-height: 1.7;
+      color: #555;
+    }
+
+    /* Visual placeholder */
+    .ov-visual {
+      width: 100%;
+      aspect-ratio: 16/9;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #9f1239 0%, #f43f5e 50%, #fda4af 100%);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .ov-visual-label {
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+    }
+
+    .ov-caption {
+      font-size: 11.5px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* Spotlight list */
+    .spotlight-list { margin-top: 4px; }
+
+    .sp-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 13px;
+      color: #444;
+    }
+    .sp-item:last-child { border-bottom: none; }
+
+    .sp-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #ccc;
+      flex-shrink: 0;
+    }
+
+    /* ── SECTION ── */
+    .cs-section {
+      padding: 52px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cs-section:last-of-type { border-bottom: none; }
+
+    .s-label {
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .s-heading {
+      font-size: clamp(20px, 2.2vw, 26px);
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      color: var(--text);
+      margin-bottom: 24px;
+    }
+
+    .s-body {
+      font-size: 14.5px;
+      line-height: 1.75;
+      color: #484848;
+      max-width: 620px;
+    }
+    .s-body p { margin-bottom: 14px; }
+    .s-body p:last-child { margin-bottom: 0; }
+
+    /* Two col */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+    }
+
+    /* Process steps */
+    .steps { margin-top: 4px; }
+
+    .step {
+      display: grid;
+      grid-template-columns: 32px 1fr;
+      gap: 16px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .step:last-child { border-bottom: none; }
+
+    .step-num {
+      font-size: 11px;
+      color: var(--muted);
+      padding-top: 2px;
+    }
+
+    .step-content h4 {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 5px;
+      letter-spacing: -0.01em;
+    }
+
+    .step-content p {
+      font-size: 13px;
+      line-height: 1.65;
+      color: #666;
+    }
+
+    /* Pull quote */
+    .pull-quote {
+      font-size: clamp(16px, 1.8vw, 20px);
+      font-weight: 400;
+      font-style: italic;
+      line-height: 1.5;
+      color: #333;
+      border-left: 2px solid var(--border);
+      padding-left: 20px;
+      margin-bottom: 20px;
+    }
+
+    /* Decisions */
+    .decision {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .decision:last-child { border-bottom: none; }
+
+    .d-label {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .d-label.answer { color: #f43f5e; }
+
+    .d-text {
+      font-size: 13.5px;
+      line-height: 1.65;
+      color: #444;
+    }
+
+    /* Stats */
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      margin-bottom: 40px;
+    }
+
+    .stat-cell {
+      padding: 0 32px 0 0;
+      border-right: 1px solid var(--border);
+      margin-right: 32px;
+    }
+    .stat-cell:last-child { border-right: none; margin-right: 0; padding-right: 0; }
+
+    .stat-num {
+      font-size: clamp(40px, 5vw, 60px);
+      font-weight: 700;
+      letter-spacing: -0.05em;
+      color: var(--text);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .stat-desc {
+      font-size: 12.5px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* Reflection */
+    .reflection-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 48px;
+    }
+
+    .r-label {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .r-text {
+      font-size: 13.5px;
+      line-height: 1.65;
+      color: #484848;
+    }
+
+    /* ── FOOTER ── */
+    .cs-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 40px 0 0;
+      border-top: 1px solid var(--border);
+      gap: 24px;
+    }
+
+    .footer-next {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 6px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .footer-project {
+      font-size: 18px;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 12px;
+    }
+
+    .f-link {
+      font-size: 13px;
+      color: #555;
+      text-decoration: none;
+      padding: 8px 18px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: var(--white);
+      transition: background 0.15s;
+    }
+    .f-link:hover { background: var(--subtle); }
+    .f-link.primary { background: var(--text); color: #fff; border-color: var(--text); }
+    .f-link.primary:hover { background: #333; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 800px) {
+      nav { padding: 16px 20px; }
+      .page { padding: 80px 20px 60px; }
+      .cs-hero { grid-template-columns: 1fr; gap: 20px; }
+      .meta-row { grid-template-columns: 1fr 1fr; }
+      .meta-cell:nth-child(2) { border-right: none; }
+      .overview { grid-template-columns: 1fr; }
+      .ov-panel { border-right: none; border-bottom: 1px solid var(--border); margin-right: 0; padding-right: 0; padding-bottom: 32px; margin-bottom: 0; }
+      .ov-panel:last-child { border-bottom: none; }
+      .two-col { grid-template-columns: 1fr; gap: 40px; }
+      .decision { grid-template-columns: 1fr; gap: 16px; }
+      .stat-row { grid-template-columns: 1fr; gap: 24px; }
+      .stat-cell { border-right: none; margin-right: 0; padding-right: 0; }
+      .reflection-row { grid-template-columns: 1fr; gap: 28px; }
+      .cs-footer { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-back">← Work</a>
+    <span class="nav-title">Contact Hub.</span>
+    <span class="nav-right">Michelle TK</span>
+  </nav>
+
+  <div class="page">
+
+    <!-- HERO -->
+    <div class="cs-hero">
+      <h1 class="cs-title">Contact Hub.</h1>
+      <p class="cs-tagline">Research and product design for the contact management experience inside a financial institution's mobile transfers product, completed through a confidential experiential learning engagement. The institution's name and identifying product details are withheld under its disclosure terms.</p>
+    </div>
+
+    <p class="recognition-line">Experiential Learning Engagement, Confidential Financial Institution &nbsp;·&nbsp; Research and recommendations rated positively by the senior engineering team responsible for the product</p>
+
+    <!-- META -->
+    <div class="meta-row">
+      <div class="meta-cell">
+        <div class="meta-key">Role</div>
+        <div class="meta-val">Research &amp; Product Design Lead, Mobile Transfers</div>
+      </div>
+      <div class="meta-cell">
+        <div class="meta-key">Engagement</div>
+        <div class="meta-val">Confidential Financial Institution (Experiential Learning)</div>
+      </div>
+      <div class="meta-cell">
+        <div class="meta-key">Duration</div>
+        <div class="meta-val">Jan – Apr 2026</div>
+      </div>
+      <div class="meta-cell">
+        <div class="meta-key">Tools</div>
+        <div class="meta-val">[Add tools — e.g. Figma, Notion, Miro]</div>
+      </div>
+    </div>
+
+    <!-- OVERVIEW -->
+    <div class="overview">
+      <div class="ov-panel">
+        <p class="ov-label">Overview</p>
+        <h2 class="ov-heading">The Brief</h2>
+        <p class="ov-body">The brief centered on Mobile Transfers: how customers find, add, and manage the contacts they send money to, and where that experience breaks down. The institution brought in an experiential learning team to research this space and design improvements, working across a distributed stakeholder group spanning research, design, engineering, and compliance.<br><br>All of it had to operate within the institution's disclosure and legal limitations on what could be recorded, shared, or shown outside the organization.</p>
+      </div>
+
+      <div class="ov-panel">
+        <p class="ov-label">The Work</p>
+        <h2 class="ov-heading">Research &amp; Product Design</h2>
+        <div class="ov-visual">
+          <span class="ov-visual-label">Work product confidential — no visuals included</span>
+        </div>
+        <p class="ov-caption">Deliverables included interview and analysis frameworks, synthesized research findings, prioritized opportunity areas, and a recommendations presentation for senior stakeholders, all retained within the institution's systems.</p>
+      </div>
+
+      <div class="ov-panel">
+        <p class="ov-label">Spotlight</p>
+        <h2 class="ov-heading">What I Did</h2>
+        <div class="spotlight-list">
+          <div class="sp-item"><span class="sp-dot"></span>Defined the research scope with a distributed stakeholder group</div>
+          <div class="sp-item"><span class="sp-dot"></span>Built interview &amp; analysis frameworks from scratch</div>
+          <div class="sp-item"><span class="sp-dot"></span>Maintained living documentation for findings</div>
+          <div class="sp-item"><span class="sp-dot"></span>Facilitated design, feedback &amp; stakeholder workshops</div>
+          <div class="sp-item"><span class="sp-dot"></span>Tied research findings to measurable business value</div>
+          <div class="sp-item"><span class="sp-dot"></span>Presented insights &amp; recommendations to senior stakeholders</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTEXT -->
+    <div class="cs-section">
+      <p class="s-label">Context</p>
+      <div class="two-col">
+        <div>
+          <h2 class="s-heading">Why this mattered</h2>
+          <div class="s-body">
+            <p>Contact Hub was the working name for a research and design effort inside the institution's Mobile Transfers product: how customers manage the people and accounts they send money to, and where that experience falls short. As an experiential learning engagement, the team was brought in for a fixed period, January to April 2026, to research this space and hand off recommendations the institution's own teams could act on once the engagement ended.</p>
+            <p>My role was to lead that research and the design work that followed: scoping what we could realistically investigate, building the frameworks the team used to run and analyze interviews, and keeping documentation in a state where it would still make sense to people who hadn't been in the room for the original conversations.</p>
+          </div>
+        </div>
+        <div>
+          <h2 class="s-heading" style="color: var(--muted); font-weight: 400;">Because of the institution's disclosure and legal requirements, its name, the specific product, and any details that could identify it are withheld from this case study. What's described here is the research and design process itself: how the work was scoped, run, and handed off to the team that would carry it forward.</h2>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROCESS -->
+    <div class="cs-section">
+      <p class="s-label">Process</p>
+      <div class="two-col">
+        <div>
+          <h2 class="s-heading">How I approached it</h2>
+          <div class="steps">
+            <div class="step">
+              <div class="step-num">01</div>
+              <div class="step-content">
+                <h4>Scoping the research</h4>
+                <p>Worked with the distributed stakeholder group across research, design, engineering, and compliance to define what the research could and couldn't cover. The institution's disclosure rules shaped that scope as much as the product question did.</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">02</div>
+              <div class="step-content">
+                <h4>Building interview &amp; analysis frameworks</h4>
+                <p>Built the frameworks the team used to run interviews and synthesize findings consistently, so results from different stakeholders and sessions could be compared against each other rather than treated as one-off conversations.</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">03</div>
+              <div class="step-content">
+                <h4>Facilitating workshops</h4>
+                <p>Ran design, feedback, and stakeholder workshops to surface insights from the research and align the group on which opportunity areas mattered most, tying each one back to a measurable business outcome.</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">04</div>
+              <div class="step-content">
+                <h4>Maintaining living documentation</h4>
+                <p>Kept documentation updated throughout the engagement so findings stayed accessible to people outside the immediate team. The experiential format meant the team wouldn't be there to explain it later, so the documentation had to.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h2 class="s-heading">Key insight</h2>
+          <p class="pull-quote">"Research only does its job if someone can still use it after the team that ran it is gone."</p>
+          <div class="s-body">
+            <p>That's the constraint an experiential learning engagement puts on the work. There's a fixed end date, and after it, the people who built the context for every finding are no longer in the room. Documentation wasn't an afterthought; it was part of the deliverable, written for stakeholders who would inherit the findings without having sat in on the interviews.</p>
+            <p>That shaped how the interview and analysis frameworks were built too: not just to capture what people said, but to capture it in a form the next reader could pick up cold.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DECISIONS -->
+    <div class="cs-section">
+      <p class="s-label">Decisions</p>
+      <h2 class="s-heading">Where judgment calls were made</h2>
+
+      <div class="decision">
+        <div>
+          <div class="d-label">The question</div>
+          <p class="d-text">The stakeholder group spanned research, design, engineering, and compliance, each with different priorities and vocabulary. How do you build a single interview and analysis framework that works across all of them?</p>
+        </div>
+        <div>
+          <div class="d-label answer">What I decided</div>
+          <p class="d-text">[Your reasoning — e.g. how the framework's categories were chosen so findings could be read by each function without translation, and what got standardized versus left flexible.]</p>
+        </div>
+      </div>
+
+      <div class="decision">
+        <div>
+          <div class="d-label">The question</div>
+          <p class="d-text">The institution's disclosure and legal limitations restricted what could be documented or shared. How did you decide what could go into the living documentation versus what had to stay verbal or internal?</p>
+        </div>
+        <div>
+          <div class="d-label answer">What I decided</div>
+          <p class="d-text">[Your reasoning — e.g. the line you drew between findings that could be generalized into documentation and details that had to be redacted or handled case by case, and who you checked with along the way.]</p>
+        </div>
+      </div>
+
+      <div class="decision">
+        <div>
+          <div class="d-label">The question</div>
+          <p class="d-text">Workshops surfaced more opportunity areas than the institution could act on at once. How did you decide which ones made it into the final recommendations to senior stakeholders?</p>
+        </div>
+        <div>
+          <div class="d-label answer">What I decided</div>
+          <p class="d-text">[Your reasoning — e.g. the criteria used, such as ties to measurable business value, feasibility, or stakeholder appetite, and an example of an opportunity area that didn't make the cut and why.]</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- OUTCOMES -->
+    <div class="cs-section">
+      <p class="s-label">Outcomes</p>
+      <h2 class="s-heading" style="margin-bottom: 36px;">What changed</h2>
+
+      <div class="stat-row">
+        <div class="stat-cell">
+          <div class="stat-num">[X]</div>
+          <div class="stat-desc">[e.g. number of stakeholder interviews conducted across the distributed group]</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-num">[X]</div>
+          <div class="stat-desc">[e.g. number of opportunity areas identified and prioritized in workshops]</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-num">[X]</div>
+          <div class="stat-desc">[e.g. number of recommendations delivered in the final presentation to senior stakeholders]</div>
+        </div>
+      </div>
+
+      <div class="s-body">
+        <p>By the end of the engagement, the team had handed off a synthesized set of research findings, a set of opportunity areas prioritized against business value, and a final set of strategic recommendations presented directly to senior stakeholders.</p>
+        <p>The senior engineering team responsible for the product gave the work a positive reception. [Add detail on how that feedback was given, e.g. in the closing presentation, a written review, or a follow-up conversation, and what specifically landed.]</p>
+      </div>
+    </div>
+
+    <!-- REFLECTION -->
+    <div class="cs-section">
+      <p class="s-label">Reflection</p>
+      <h2 class="s-heading" style="margin-bottom: 32px;">What I'd do differently</h2>
+      <div class="reflection-row">
+        <div>
+          <div class="r-label">What worked</div>
+          <p class="r-text">[e.g. building the interview and analysis frameworks early meant the distributed stakeholder group could contribute consistently, even across different functions and schedules.]</p>
+        </div>
+        <div>
+          <div class="r-label">What I'd change</div>
+          <p class="r-text">[e.g. something you'd sequence differently around the disclosure and legal review process, or how documentation could have been structured even earlier.]</p>
+        </div>
+        <div>
+          <div class="r-label">What I learned</div>
+          <p class="r-text">[e.g. what leading research across a distributed, cross-functional stakeholder group inside a large institution taught you, particularly about translating findings into terms senior stakeholders act on.]</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="cs-footer">
+      <div>
+        <div class="footer-next">Next</div>
+        <div class="footer-project">Banking on Investment.</div>
+      </div>
+      <div class="footer-links">
+        <a href="index.html" class="f-link">← All work</a>
+        <a href="boi.html" class="f-link primary">Banking on Investment. →</a>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>unify. — Michelle TK</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f5f4f0;
+      --white: #ffffff;
+      --border: #e5e4e0;
+      --text: #111;
+      --muted: #999;
+      --subtle: #f0efeb;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-back {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--text); }
+
+    .nav-title {
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+    }
+
+    .nav-right {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* ── PAGE ── */
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 96px 40px 80px;
+    }
+
+    /* ── HERO STRIP ── */
+    .cs-hero {
+      padding: 60px 0 48px;
+      border-bottom: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: end;
+    }
+
+    .cs-title {
+      font-size: clamp(48px, 6vw, 80px);
+      font-weight: 300;
+      letter-spacing: -0.05em;
+      line-height: 1;
+      color: var(--text);
+    }
+
+    .cs-tagline {
+      font-size: 15px;
+      line-height: 1.65;
+      color: #555;
+      max-width: 380px;
+    }
+
+    .cs-tagline a {
+      color: var(--text);
+      text-decoration: underline;
+      text-decoration-color: var(--border);
+    }
+
+    /* Recognition line */
+    .recognition-line {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.7;
+      padding: 14px 0 0;
+    }
+
+    /* ── META ROW ── */
+    .meta-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .meta-cell {
+      padding: 20px 0 20px;
+      border-right: 1px solid var(--border);
+      padding-right: 24px;
+      margin-right: 24px;
+    }
+    .meta-cell:last-child { border-right: none; margin-right: 0; padding-right: 0; }
+
+    .meta-key {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 5px;
+    }
+
+    .meta-val {
+      font-size: 13px;
+      color: var(--text);
+    }
+
+    /* ── OVERVIEW 3-COL ── */
+    .overview {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr 1fr;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 0;
+    }
+
+    .ov-panel {
+      padding: 40px 32px 40px 0;
+      border-right: 1px solid var(--border);
+      margin-right: 32px;
+    }
+    .ov-panel:last-child { border-right: none; margin-right: 0; padding-right: 0; }
+
+    .ov-label {
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    .ov-heading {
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+
+    .ov-body {
+      font-size: 13.5px;
+      line-height: 1.7;
+      color: #555;
+    }
+
+    /* Visual placeholder */
+    .ov-visual {
+      width: 100%;
+      aspect-ratio: 16/9;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #312e81 0%, #6366f1 50%, #a78bfa 100%);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .ov-visual-label {
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+    }
+
+    .ov-caption {
+      font-size: 11.5px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* Spotlight list */
+    .spotlight-list { margin-top: 4px; }
+
+    .sp-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 13px;
+      color: #444;
+    }
+    .sp-item:last-child { border-bottom: none; }
+
+    .sp-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #ccc;
+      flex-shrink: 0;
+    }
+
+    /* ── SECTION ── */
+    .cs-section {
+      padding: 52px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cs-section:last-of-type { border-bottom: none; }
+
+    .s-label {
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .s-heading {
+      font-size: clamp(20px, 2.2vw, 26px);
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      color: var(--text);
+      margin-bottom: 24px;
+    }
+
+    .s-body {
+      font-size: 14.5px;
+      line-height: 1.75;
+      color: #484848;
+      max-width: 620px;
+    }
+    .s-body p { margin-bottom: 14px; }
+    .s-body p:last-child { margin-bottom: 0; }
+
+    /* Two col */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+    }
+
+    /* Process steps */
+    .steps { margin-top: 4px; }
+
+    .step {
+      display: grid;
+      grid-template-columns: 32px 1fr;
+      gap: 16px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .step:last-child { border-bottom: none; }
+
+    .step-num {
+      font-size: 11px;
+      color: var(--muted);
+      padding-top: 2px;
+    }
+
+    .step-content h4 {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 5px;
+      letter-spacing: -0.01em;
+    }
+
+    .step-content p {
+      font-size: 13px;
+      line-height: 1.65;
+      color: #666;
+    }
+
+    /* Pull quote */
+    .pull-quote {
+      font-size: clamp(16px, 1.8vw, 20px);
+      font-weight: 400;
+      font-style: italic;
+      line-height: 1.5;
+      color: #333;
+      border-left: 2px solid var(--border);
+      padding-left: 20px;
+      margin-bottom: 20px;
+    }
+
+    /* Decisions */
+    .decision {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .decision:last-child { border-bottom: none; }
+
+    .d-label {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .d-label.answer { color: #6366f1; }
+
+    .d-text {
+      font-size: 13.5px;
+      line-height: 1.65;
+      color: #444;
+    }
+
+    /* Stats */
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      margin-bottom: 40px;
+    }
+
+    .stat-cell {
+      padding: 0 32px 0 0;
+      border-right: 1px solid var(--border);
+      margin-right: 32px;
+    }
+    .stat-cell:last-child { border-right: none; margin-right: 0; padding-right: 0; }
+
+    .stat-num {
+      font-size: clamp(40px, 5vw, 60px);
+      font-weight: 700;
+      letter-spacing: -0.05em;
+      color: var(--text);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .stat-desc {
+      font-size: 12.5px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* Reflection */
+    .reflection-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 48px;
+    }
+
+    .r-label {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .r-text {
+      font-size: 13.5px;
+      line-height: 1.65;
+      color: #484848;
+    }
+
+    /* ── FOOTER ── */
+    .cs-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 40px 0 0;
+      border-top: 1px solid var(--border);
+      gap: 24px;
+    }
+
+    .footer-next {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 6px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .footer-project {
+      font-size: 18px;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 12px;
+    }
+
+    .f-link {
+      font-size: 13px;
+      color: #555;
+      text-decoration: none;
+      padding: 8px 18px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: var(--white);
+      transition: background 0.15s;
+    }
+    .f-link:hover { background: var(--subtle); }
+    .f-link.primary { background: var(--text); color: #fff; border-color: var(--text); }
+    .f-link.primary:hover { background: #333; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 800px) {
+      nav { padding: 16px 20px; }
+      .page { padding: 80px 20px 60px; }
+      .cs-hero { grid-template-columns: 1fr; gap: 20px; }
+      .meta-row { grid-template-columns: 1fr 1fr; }
+      .meta-cell:nth-child(2) { border-right: none; }
+      .overview { grid-template-columns: 1fr; }
+      .ov-panel { border-right: none; border-bottom: 1px solid var(--border); margin-right: 0; padding-right: 0; padding-bottom: 32px; margin-bottom: 0; }
+      .ov-panel:last-child { border-bottom: none; }
+      .two-col { grid-template-columns: 1fr; gap: 40px; }
+      .decision { grid-template-columns: 1fr; gap: 16px; }
+      .stat-row { grid-template-columns: 1fr; gap: 24px; }
+      .stat-cell { border-right: none; margin-right: 0; padding-right: 0; }
+      .reflection-row { grid-template-columns: 1fr; gap: 28px; }
+      .cs-footer { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-back">← Work</a>
+    <span class="nav-title">unify.</span>
+    <span class="nav-right">Michelle TK</span>
+  </nav>
+
+  <div class="page">
+
+    <!-- HERO -->
+    <div class="cs-hero">
+      <h1 class="cs-title">unify.</h1>
+      <p class="cs-tagline">Strategy and partnerships for Unify, an all-in-one settlement app helping newcomers navigate life in Canada. Live at <a href="https://unifysocial.ca" target="_blank">unifysocial.ca ↗</a></p>
+    </div>
+
+    <p class="recognition-line">1st: Desjardin Community Empowerment Challenge, Enactus Canada &nbsp;·&nbsp; 2nd: Innovation &amp; Impact Challenge, Enactus Western Canada &nbsp;·&nbsp; Best Project: RBC Foundation, Enactus Canada</p>
+
+    <!-- META -->
+    <div class="meta-row">
+      <div class="meta-cell">
+        <div class="meta-key">Role</div>
+        <div class="meta-val">Strategy &amp; Partnerships</div>
+      </div>
+      <div class="meta-cell">
+        <div class="meta-key">Venture</div>
+        <div class="meta-val">Unify (Enactus)</div>
+      </div>
+      <div class="meta-cell">
+        <div class="meta-key">Platform</div>
+        <div class="meta-val">iOS App Store, unifysocial.ca</div>
+      </div>
+      <div class="meta-cell">
+        <div class="meta-key">Tools</div>
+        <div class="meta-val">Figma, Notion, Claude</div>
+      </div>
+    </div>
+
+    <!-- OVERVIEW -->
+    <div class="overview">
+      <div class="ov-panel">
+        <p class="ov-label">Overview</p>
+        <h2 class="ov-heading">The Problem</h2>
+        <p class="ov-body">62% of newcomers to Canada report struggling to find the resources they need: government sites, Reddit threads, and WhatsApp chats all give different answers. On top of that, 70% struggle to adapt because of cultural and language barriers, often without a community to lean on.<br><br>Unify set out to centralize trusted settlement information, AI guidance, and a newcomer community in one app.</p>
+      </div>
+
+      <div class="ov-panel">
+        <p class="ov-label">The Work</p>
+        <h2 class="ov-heading">Strategy &amp; Partnerships</h2>
+        <div class="ov-visual">
+          <span class="ov-visual-label">Add screenshot or partner map</span>
+        </div>
+        <p class="ov-caption">Unify is live on the App Store with a community of 250+ newcomers, backed by a network of 15 partner organizations.</p>
+      </div>
+
+      <div class="ov-panel">
+        <p class="ov-label">Spotlight</p>
+        <h2 class="ov-heading">What I Did</h2>
+        <div class="spotlight-list">
+          <div class="sp-item"><span class="sp-dot"></span>136 orgs outreached → 15 partnerships secured</div>
+          <div class="sp-item"><span class="sp-dot"></span>Competitor &amp; feature analysis (Learn)</div>
+          <div class="sp-item"><span class="sp-dot"></span>32 user interviews conducted</div>
+          <div class="sp-item"><span class="sp-dot"></span>21 modules, 20 task workflows designed</div>
+          <div class="sp-item"><span class="sp-dot"></span>16 live beta tests run</div>
+          <div class="sp-item"><span class="sp-dot"></span>Brand analysis &amp; AI assistant redesign</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTEXT -->
+    <div class="cs-section">
+      <p class="s-label">Context</p>
+      <div class="two-col">
+        <div>
+          <h2 class="s-heading">Why this mattered</h2>
+          <div class="s-body">
+            <p>Unify was founded by Cedric and Savar as an Enactus venture, after hearing the same story over and over from people new to Canada: confusion, unclear answers, and isolation. The app brings together a personalized settlement checklist, an AI companion grounded in government and settlement sources, short "Learn" lessons, and a community layer: Q&amp;A forums, interest groups, and small-group matching ("Unify Circles").</p>
+            <p>My role centered on strategy and partnerships: building the network of organizations that would give Unify reach and credibility, and running the research that shaped what the product itself needed to do.</p>
+          </div>
+        </div>
+        <div>
+          <h2 class="s-heading" style="color: var(--muted); font-weight: 400;">Partners include RBC, EY, Simon Fraser University, Capilano University, Fraser International College, YMCA BC, United Way BC, Vancouver Public Library, Surrey Libraries, Burnaby Public Library, Burnaby Neighbourhood House, Trout Lake Community Centre, Newcomer Jobs Canada, Promise Vancouver, and Big Brothers Big Sisters.</h2>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROCESS -->
+    <div class="cs-section">
+      <p class="s-label">Process</p>
+      <div class="two-col">
+        <div>
+          <h2 class="s-heading">How I approached it</h2>
+          <div class="steps">
+            <div class="step">
+              <div class="step-num">01</div>
+              <div class="step-content">
+                <h4>Problem validation</h4>
+                <p>Ran 32 user interviews with newcomers to confirm where settlement actually breaks down — scattered information, no roadmap, and isolation came up consistently.</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">02</div>
+              <div class="step-content">
+                <h4>Competitor &amp; feature analysis</h4>
+                <p>Analyzed how other newcomer-support platforms structured their "Learn" content. Used the findings to shape the structure and delivery of Unify's 21 modules and 20 task workflows.</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">03</div>
+              <div class="step-content">
+                <h4>Partner outreach</h4>
+                <p>Contacted 136 organizations across settlement services, post-secondary institutions, financial institutions, and community orgs. Converted 15 into active partnerships, including RBC, EY, SFU, and YMCA BC.</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">04</div>
+              <div class="step-content">
+                <h4>Beta testing</h4>
+                <p>Ran 16 live beta tests with real newcomers to validate the modules, workflows, and partner-sourced content before wider rollout.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h2 class="s-heading">Key insight</h2>
+          <p class="pull-quote">"For newcomers, information wasn't the gap. Trust was."</p>
+          <div class="s-body">
+            <p>Unify's whole premise is that newcomers can't tell which advice is current or relevant to their situation. An app saying "trust us" doesn't solve that — but an app backed by RBC, SFU, and the Vancouver Public Library does.</p>
+            <p>That reframed partnerships from a distribution channel into the credibility layer the product needed to work at all.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DECISIONS -->
+    <div class="cs-section">
+      <p class="s-label">Decisions</p>
+      <h2 class="s-heading">Where judgment calls were made</h2>
+
+      <div class="decision">
+        <div>
+          <div class="d-label">The question</div>
+          <p class="d-text">136 organizations were contacted but only 15 became partners. With a small team and limited time, how do you decide who's worth pursuing?</p>
+        </div>
+        <div>
+          <div class="d-label answer">What I decided</div>
+          <p class="d-text">[Your prioritization logic — e.g. reach vs. credibility vs. response likelihood, and how you sequenced outreach.]</p>
+        </div>
+      </div>
+
+      <div class="decision">
+        <div>
+          <div class="d-label">The question</div>
+          <p class="d-text">Competitor analysis of the "Learn" feature led to changes in how the 21 modules and 20 workflows were structured. What did that analysis actually reveal, and what changed?</p>
+        </div>
+        <div>
+          <div class="d-label answer">What I decided</div>
+          <p class="d-text">[Specific finding from the competitor analysis and the structural change it drove — e.g. lesson length, sequencing, format.]</p>
+        </div>
+      </div>
+
+      <div class="decision">
+        <div>
+          <div class="d-label">The question</div>
+          <p class="d-text">32 interviews surfaced findings relevant to both partnerships and product. How did insights move between the two workstreams?</p>
+        </div>
+        <div>
+          <div class="d-label answer">What I decided</div>
+          <p class="d-text">[How research findings were shared across the team — e.g. synthesis docs, working sessions, how it shaped both the partner pitch and the product roadmap.]</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- OUTCOMES -->
+    <div class="cs-section">
+      <p class="s-label">Outcomes</p>
+      <h2 class="s-heading" style="margin-bottom: 36px;">What changed</h2>
+
+      <div class="stat-row">
+        <div class="stat-cell">
+          <div class="stat-num">15</div>
+          <div class="stat-desc">Partnerships secured from 136 organizations contacted, including RBC, EY, SFU, and YMCA BC</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-num">32</div>
+          <div class="stat-desc">User interviews conducted to validate settlement pain points before building</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-num">16</div>
+          <div class="stat-desc">Live beta tests run with real newcomers ahead of public launch</div>
+        </div>
+      </div>
+
+      <div class="s-body">
+        <p>Unify is live on the App Store and at unifysocial.ca, with a community of 250+ newcomers. The 15-partner network spans financial institutions, post-secondary institutions, libraries, and community organizations across Metro Vancouver, giving Unify both distribution and the credibility a new app can't build on its own.</p>
+        <p>The venture was recognized with three Enactus awards: 1st place at the Desjardin Community Empowerment Challenge (Enactus Canada), 2nd place at the Innovation &amp; Impact Challenge (Enactus Western Canada), and Best Project from the RBC Foundation (Enactus Canada).</p>
+        <p>Separately, using Figma's MCP integration with Claude, I researched and prototyped a redesign of Unify's AI assistant — work that's still under development and will ship later this year, so I can't share details yet.</p>
+      </div>
+    </div>
+
+    <!-- REFLECTION -->
+    <div class="cs-section">
+      <p class="s-label">Reflection</p>
+      <h2 class="s-heading" style="margin-bottom: 32px;">What I'd do differently</h2>
+      <div class="reflection-row">
+        <div>
+          <div class="r-label">What worked</div>
+          <p class="r-text">[e.g. running interviews before outreach meant partnership conversations were backed by real data, not assumptions.]</p>
+        </div>
+        <div>
+          <div class="r-label">What I'd change</div>
+          <p class="r-text">[e.g. something you'd sequence differently, or a place the competitor analysis could have come earlier.]</p>
+        </div>
+        <div>
+          <div class="r-label">What I learned</div>
+          <p class="r-text">[e.g. what cold-outreach at this scale taught you — managing a 136-to-15 funnel, follow-up, rejection.]</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="cs-footer">
+      <div>
+        <div class="footer-next">Next</div>
+        <div class="footer-project">Contact Hub.</div>
+      </div>
+      <div class="footer-links">
+        <a href="index.html" class="f-link">← All work</a>
+        <a href="ch.html" class="f-link primary">Contact Hub →</a>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Banking on Investment. — Michelle TK</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f5f4f0;
+      --white: #ffffff;
+      --border: #e5e4e0;
+      --text: #111;
+      --muted: #999;
+      --subtle: #f0efeb;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-back {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--text); }
+
+    .nav-title {
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+    }
+
+    .nav-right {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* ── PAGE ── */
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 96px 40px 80px;
+    }
+
+    /* ── HERO STRIP ── */
+    .cs-hero {
+      padding: 60px 0 48px;
+      border-bottom: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: end;
+    }
+
+    .cs-title {
+      font-size: clamp(48px, 6vw, 80px);
+      font-weight: 300;
+      letter-spacing: -0.05em;
+      line-height: 1;
+      color: var(--text);
+    }
+
+    .cs-tagline {
+      font-size: 15px;
+      line-height: 1.65;
+      color: #555;
+      max-width: 380px;
+    }
+
+    .cs-tagline a {
+      color: var(--text);
+      text-decoration: underline;
+      text-decoration-color: var(--border);
+    }
+
+    /* Recognition line */
+    .recognition-line {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.7;
+      padding: 14px 0 0;
+    }
+
+    /* ── META ROW ── */
+    .meta-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .meta-cell {
+      padding: 20px 0 20px;
+      border-right: 1px solid var(--border);
+      padding-right: 24px;
+      margin-right: 24px;
+    }
+    .meta-cell:last-child { border-right: none; margin-right: 0; padding-right: 0; }
+
+    .meta-key {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 5px;
+    }
+
+    .meta-val {
+      font-size: 13px;
+      color: var(--text);
+    }
+
+    /* ── OVERVIEW 3-COL ── */
+    .overview {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr 1fr;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 0;
+    }
+
+    .ov-panel {
+      padding: 40px 32px 40px 0;
+      border-right: 1px solid var(--border);
+      margin-right: 32px;
+    }
+    .ov-panel:last-child { border-right: none; margin-right: 0; padding-right: 0; }
+
+    .ov-label {
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    .ov-heading {
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+
+    .ov-body {
+      font-size: 13.5px;
+      line-height: 1.7;
+      color: #555;
+    }
+
+    /* Visual placeholder */
+    .ov-visual {
+      width: 100%;
+      aspect-ratio: 16/9;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #7c2d12 0%, #fb923c 50%, #fde68a 100%);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .ov-visual-label {
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+    }
+
+    .ov-caption {
+      font-size: 11.5px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* Spotlight list */
+    .spotlight-list { margin-top: 4px; }
+
+    .sp-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 13px;
+      color: #444;
+    }
+    .sp-item:last-child { border-bottom: none; }
+
+    .sp-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #ccc;
+      flex-shrink: 0;
+    }
+
+    /* ── SECTION ── */
+    .cs-section {
+      padding: 52px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cs-section:last-of-type { border-bottom: none; }
+
+    .s-label {
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .s-heading {
+      font-size: clamp(20px, 2.2vw, 26px);
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      color: var(--text);
+      margin-bottom: 24px;
+    }
+
+    .s-body {
+      font-size: 14.5px;
+      line-height: 1.75;
+      color: #484848;
+      max-width: 620px;
+    }
+    .s-body p { margin-bottom: 14px; }
+    .s-body p:last-child { margin-bottom: 0; }
+
+    /* Two col */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+    }
+
+    /* Process steps */
+    .steps { margin-top: 4px; }
+
+    .step {
+      display: grid;
+      grid-template-columns: 32px 1fr;
+      gap: 16px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .step:last-child { border-bottom: none; }
+
+    .step-num {
+      font-size: 11px;
+      color: var(--muted);
+      padding-top: 2px;
+    }
+
+    .step-content h4 {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 5px;
+      letter-spacing: -0.01em;
+    }
+
+    .step-content p {
+      font-size: 13px;
+      line-height: 1.65;
+      color: #666;
+    }
+
+    /* Pull quote */
+    .pull-quote {
+      font-size: clamp(16px, 1.8vw, 20px);
+      font-weight: 400;
+      font-style: italic;
+      line-height: 1.5;
+      color: #333;
+      border-left: 2px solid var(--border);
+      padding-left: 20px;
+      margin-bottom: 20px;
+    }
+
+    /* Decisions */
+    .decision {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .decision:last-child { border-bottom: none; }
+
+    .d-label {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .d-label.answer { color: #fb923c; }
+
+    .d-text {
+      font-size: 13.5px;
+      line-height: 1.65;
+      color: #444;
+    }
+
+    /* Stats */
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      margin-bottom: 40px;
+    }
+
+    .stat-cell {
+      padding: 0 32px 0 0;
+      border-right: 1px solid var(--border);
+      margin-right: 32px;
+    }
+    .stat-cell:last-child { border-right: none; margin-right: 0; padding-right: 0; }
+
+    .stat-num {
+      font-size: clamp(40px, 5vw, 60px);
+      font-weight: 700;
+      letter-spacing: -0.05em;
+      color: var(--text);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .stat-desc {
+      font-size: 12.5px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* Reflection */
+    .reflection-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 48px;
+    }
+
+    .r-label {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .r-text {
+      font-size: 13.5px;
+      line-height: 1.65;
+      color: #484848;
+    }
+
+    /* ── FOOTER ── */
+    .cs-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 40px 0 0;
+      border-top: 1px solid var(--border);
+      gap: 24px;
+    }
+
+    .footer-next {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 6px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .footer-project {
+      font-size: 18px;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 12px;
+    }
+
+    .f-link {
+      font-size: 13px;
+      color: #555;
+      text-decoration: none;
+      padding: 8px 18px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: var(--white);
+      transition: background 0.15s;
+    }
+    .f-link:hover { background: var(--subtle); }
+    .f-link.primary { background: var(--text); color: #fff; border-color: var(--text); }
+    .f-link.primary:hover { background: #333; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 800px) {
+      nav { padding: 16px 20px; }
+      .page { padding: 80px 20px 60px; }
+      .cs-hero { grid-template-columns: 1fr; gap: 20px; }
+      .meta-row { grid-template-columns: 1fr 1fr; }
+      .meta-cell:nth-child(2) { border-right: none; }
+      .overview { grid-template-columns: 1fr; }
+      .ov-panel { border-right: none; border-bottom: 1px solid var(--border); margin-right: 0; padding-right: 0; padding-bottom: 32px; margin-bottom: 0; }
+      .ov-panel:last-child { border-bottom: none; }
+      .two-col { grid-template-columns: 1fr; gap: 40px; }
+      .decision { grid-template-columns: 1fr; gap: 16px; }
+      .stat-row { grid-template-columns: 1fr; gap: 24px; }
+      .stat-cell { border-right: none; margin-right: 0; padding-right: 0; }
+      .reflection-row { grid-template-columns: 1fr; gap: 28px; }
+      .cs-footer { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-back">← Work</a>
+    <span class="nav-title">Banking on Investment.</span>
+    <span class="nav-right">Michelle TK</span>
+  </nav>
+
+  <div class="page">
+
+    <!-- HERO -->
+    <div class="cs-hero">
+      <h1 class="cs-title">Banking on Investment.</h1>
+      <p class="cs-tagline">Content strategy and data storytelling for an analysis of how AI is reshaping the banking industry, built as the final project for IAT 355: New Media Technologies. Live at <a href="https://mis520.github.io/IAT355-NMT-FinalProject/" target="_blank">mis520.github.io/IAT355-NMT-FinalProject ↗</a></p>
+    </div>
+
+    <p class="recognition-line">IAT 355: New Media Technologies, Final Project &nbsp;·&nbsp; Team: Nathan (Programming Lead), Michelle (Content Lead), Tirsten (Data &amp; Git Lead)</p>
+
+    <!-- META -->
+    <div class="meta-row">
+      <div class="meta-cell">
+        <div class="meta-key">Role</div>
+        <div class="meta-val">Content Strategy &amp; Data Storytelling</div>
+      </div>
+      <div class="meta-cell">
+        <div class="meta-key">Project</div>
+        <div class="meta-val">Banking on Intelligence (IAT 355)</div>
+      </div>
+      <div class="meta-cell">
+        <div class="meta-key">Platform</div>
+        <div class="meta-val">GitHub Pages</div>
+      </div>
+      <div class="meta-cell">
+        <div class="meta-key">Tools</div>
+        <div class="meta-val">GitHub, [Add other tools — e.g. Figma]</div>
+      </div>
+    </div>
+
+    <!-- OVERVIEW -->
+    <div class="overview">
+      <div class="ov-panel">
+        <p class="ov-label">Overview</p>
+        <h2 class="ov-heading">The Question</h2>
+        <p class="ov-body">The project analyzes the top 50 banks in Evident Insights' AI index, cross-referenced with financial performance data from Yahoo Finance and the Wall Street Journal, and supplemented with historical data from Forbes company profiles.<br><br>The learning goal: explore how AI has affected the banking industry, both internally through development and operations, and externally through customer-facing products and satisfaction.</p>
+      </div>
+
+      <div class="ov-panel">
+        <p class="ov-label">The Work</p>
+        <h2 class="ov-heading">Content Strategy &amp; Storytelling</h2>
+        <div class="ov-visual">
+          <span class="ov-visual-label">Add screenshot of the site</span>
+        </div>
+        <p class="ov-caption">Live on GitHub Pages: an analysis of AI adoption across 50 of the world's largest banks, told through five linked visualizations.</p>
+      </div>
+
+      <div class="ov-panel">
+        <p class="ov-label">Spotlight</p>
+        <h2 class="ov-heading">What I Did</h2>
+        <div class="spotlight-list">
+          <div class="sp-item"><span class="sp-dot"></span>Led content strategy &amp; narrative structure across 5 sections</div>
+          <div class="sp-item"><span class="sp-dot"></span>Identified which visualizations to build, from industry-wide adoption to bank-level performance</div>
+          <div class="sp-item"><span class="sp-dot"></span>Analyzed visualizations to surface findings (e.g. the Capital One ROE outlier)</div>
+          <div class="sp-item"><span class="sp-dot"></span>Translated those findings into the site's analysis copy</div>
+          <div class="sp-item"><span class="sp-dot"></span>Contributed to data gathering &amp; source identification</div>
+          <div class="sp-item"><span class="sp-dot"></span>Sourced and cited 11 references; maintained project documentation</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTEXT -->
+    <div class="cs-section">
+      <p class="s-label">Context</p>
+      <div class="two-col">
+        <div>
+          <h2 class="s-heading">Why this mattered</h2>
+          <div class="s-body">
+            <p>Banking on Intelligence was built for IAT 355: New Media Technologies. The brief was open: pick a dataset, build visualizations from it, and use those visualizations to tell a story. The team chose AI in banking, since it's a sector where AI has moved from experimentation to production at scale, and the dataset (Evident Insights' AI maturity index for the top 50 banks) gave us a way to connect a fast-moving technology trend to concrete financial outcomes.</p>
+            <p>My role centered on content: deciding what story the data could actually support, which visualizations would carry that story, and writing the analysis that ties each chart back to the project's central question.</p>
+          </div>
+        </div>
+        <div>
+          <h2 class="s-heading" style="color: var(--muted); font-weight: 400;">Nathan led programming and technical implementation: building and integrating the visualizations, developing the timeline feature, and resolving front-end issues throughout the project. Tirsten led data and Git: collecting and structuring the datasets and managing version control, while also contributing to visualizations and debugging. Michelle led content: shaping the narrative and which visualizations to build, analyzing those visualizations for trends and findings, contributing to data gathering and source identification, and maintaining documentation. Roles overlapped throughout.</h2>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROCESS -->
+    <div class="cs-section">
+      <p class="s-label">Process</p>
+      <div class="two-col">
+        <div>
+          <h2 class="s-heading">How I approached it</h2>
+          <div class="steps">
+            <div class="step">
+              <div class="step-num">01</div>
+              <div class="step-content">
+                <h4>Framing the research question</h4>
+                <p>Before any data was collected, set the project's learning goals: understand how AI affects banks internally, through development and operations, and externally, through customer-facing products and satisfaction.</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">02</div>
+              <div class="step-content">
+                <h4>Source identification &amp; data gathering</h4>
+                <p>Contributed to identifying Evident Insights' AI index of the top 50 banks as the core dataset, then cross-referencing it with financial performance data from Yahoo Finance and the Wall Street Journal, and historical context from Forbes company profiles.</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">03</div>
+              <div class="step-content">
+                <h4>Visualization planning</h4>
+                <p>Worked with Nathan and Tirsten to decide which visualizations would carry the narrative: an industry-wide AI adoption comparison, a history of AI in banking, a bank performance bubble chart, a breakdown of AI use cases by type, and a regional comparison.</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">04</div>
+              <div class="step-content">
+                <h4>Analysis &amp; writing</h4>
+                <p>Analyzed each visualization once built, pulling out findings such as the Capital One outlier in the performance chart and the regional differences in AI use cases, and wrote them into the page's narrative copy.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h2 class="s-heading">Key insight</h2>
+          <p class="pull-quote">"The relationship between AI maturity and profitability isn't one-directional — it's a reinforcing cycle."</p>
+          <div class="s-body">
+            <p>That framing came out of the bank performance bubble chart, where the top-ranked AI banks led in both AI maturity and ROE, but a single outlier (Capital One) complicated the pattern for mid-tier banks. Rather than treat that outlier as noise, the copy explains why it's there: Capital One's card-focused model carries structurally higher ROE, separate from its AI maturity rank. Once that's accounted for, the broader pattern holds.</p>
+            <p>That shaped how the surrounding text for every visualization was written: not just describing what a chart shows, but explaining what would otherwise look like a contradiction.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DECISIONS -->
+    <div class="cs-section">
+      <p class="s-label">Decisions</p>
+      <h2 class="s-heading">Where judgment calls were made</h2>
+
+      <div class="decision">
+        <div>
+          <div class="d-label">The question</div>
+          <p class="d-text">AI adoption data spans 16 industries, but the project's focus is banking specifically. How was the decision made to include an industry-wide comparison at all, and where does it sit in the narrative?</p>
+        </div>
+        <div>
+          <div class="d-label answer">What I decided</div>
+          <p class="d-text">[Your reasoning — e.g. why the industry-wide chart was placed first, and how it sets up the case for focusing on finance & insurance.]</p>
+        </div>
+      </div>
+
+      <div class="decision">
+        <div>
+          <div class="d-label">The question</div>
+          <p class="d-text">The bank performance bubble chart shows Capital One as a clear outlier that could distort the headline pattern between AI maturity and ROE. How was that handled in the analysis copy?</p>
+        </div>
+        <div>
+          <div class="d-label answer">What I decided</div>
+          <p class="d-text">[Your reasoning — e.g. how you decided to name the outlier directly rather than smooth over it, and how much explanation was "enough."]</p>
+        </div>
+      </div>
+
+      <div class="decision">
+        <div>
+          <div class="d-label">The question</div>
+          <p class="d-text">Findings were drawn from four sources (Evident Insights, Yahoo Finance, the Wall Street Journal, and Forbes), each with different scopes and update cadences. How were these reconciled into one coherent set of claims?</p>
+        </div>
+        <div>
+          <div class="d-label answer">What I decided</div>
+          <p class="d-text">[Your reasoning — e.g. how conflicts between sources were resolved, and what got cut when sources didn't line up.]</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- OUTCOMES -->
+    <div class="cs-section">
+      <p class="s-label">Outcomes</p>
+      <h2 class="s-heading" style="margin-bottom: 36px;">What changed</h2>
+
+      <div class="stat-row">
+        <div class="stat-cell">
+          <div class="stat-num">50</div>
+          <div class="stat-desc">Banks analyzed from Evident Insights' AI index, cross-referenced with financial performance and historical data</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-num">5</div>
+          <div class="stat-desc">Linked visualizations built to carry the narrative, from industry-wide AI adoption to bank-level performance</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-num">11</div>
+          <div class="stat-desc">Sources synthesized into the site's history and analysis sections, each cited in the final references list</div>
+        </div>
+      </div>
+
+      <div class="s-body">
+        <p>The final site walks through five sections: where AI adoption stands across industries today, how AI in banking developed from the 1950s to now, how AI maturity relates to bank performance, how banks differ in the types of AI they prioritize, and how those priorities vary by region.</p>
+        <p>It's live on GitHub Pages as the final project for IAT 355: New Media Technologies, built and maintained collaboratively with Nathan and Tirsten.</p>
+      </div>
+    </div>
+
+    <!-- REFLECTION -->
+    <div class="cs-section">
+      <p class="s-label">Reflection</p>
+      <h2 class="s-heading" style="margin-bottom: 32px;">What I'd do differently</h2>
+      <div class="reflection-row">
+        <div>
+          <div class="r-label">What worked</div>
+          <p class="r-text">[e.g. agreeing on the narrative arc and which visualizations to build before development started, so the data and the story were never disconnected.]</p>
+        </div>
+        <div>
+          <div class="r-label">What I'd change</div>
+          <p class="r-text">[e.g. something you'd sequence differently between data gathering, visualization, and writing.]</p>
+        </div>
+        <div>
+          <div class="r-label">What I learned</div>
+          <p class="r-text">[e.g. what synthesizing 11 sources across 4 datasets into one narrative taught you about reconciling conflicting information.]</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="cs-footer">
+      <div>
+        <div class="footer-next">Next</div>
+        <div class="footer-project">Regionals '26.</div>
+      </div>
+      <div class="footer-links">
+        <a href="index.html" class="f-link">← All work</a>
+        <a href="reg.html" class="f-link primary">Regionals '26 →</a>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

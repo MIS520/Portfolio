@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Regionals '26 — Michelle TK</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;1,8..60,400&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f5f4f0;
+      --white: #ffffff;
+      --border: #e5e4e0;
+      --text: #111;
+      --muted: #999;
+      --subtle: #f0efeb;
+      --accent: #2563eb;
+      --accent-2: #10b981;
+      --accent-bg: #eaf3f0;
+      --serif: 'Source Serif 4', Georgia, serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-back {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--text); }
+
+    .nav-title {
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+    }
+
+    .nav-right {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* ── PAGE ── */
+    .page {
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 110px 24px 80px;
+    }
+
+    /* ── POST HEADER ── */
+    .post-kicker {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 18px;
+    }
+
+    .post-title {
+      font-size: clamp(32px, 5.5vw, 50px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.12;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+
+    .post-lede {
+      font-family: var(--serif);
+      font-size: 18px;
+      line-height: 1.7;
+      color: #444;
+      max-width: 600px;
+      margin-bottom: 28px;
+    }
+
+    .post-byline {
+      font-size: 13px;
+      color: var(--muted);
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      padding-bottom: 36px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* ── COVER ── */
+    .post-cover {
+      margin-top: 32px;
+    }
+
+    .cover-fill {
+      width: 100%;
+      aspect-ratio: 16/9;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #1e3a5f 0%, #3b82f6 55%, #6ee7b7 100%);
+    }
+
+    .img-caption {
+      font-size: 12px;
+      font-style: italic;
+      color: var(--muted);
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    /* ── BODY ── */
+    .post-body {
+      margin-top: 48px;
+      font-family: var(--serif);
+      font-size: 17.5px;
+      line-height: 1.85;
+      color: #2b2b2b;
+    }
+
+    .post-body h2 {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(22px, 3vw, 27px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      color: var(--text);
+      margin: 48px 0 18px;
+    }
+
+    .post-body p { margin-bottom: 22px; }
+
+    .post-body .pull {
+      font-style: italic;
+      font-size: 20px;
+      line-height: 1.6;
+      color: #333;
+      border-left: 3px solid var(--accent);
+      padding-left: 22px;
+      margin: 32px 0;
+    }
+
+    /* ── NUMBERS BOX ── */
+    .numbers-box {
+      background: var(--accent-bg);
+      border-radius: 16px;
+      padding: 32px 36px;
+      margin: 36px 0;
+    }
+
+    .numbers-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #6b8c83;
+      margin-bottom: 20px;
+    }
+
+    .numbers-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px 32px;
+    }
+
+    .number-item .num {
+      display: block;
+      font-family: 'Inter', sans-serif;
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .number-item .desc {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      line-height: 1.5;
+      color: #555;
+    }
+
+    .numbers-footnote {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-style: italic;
+      color: #6b8c83;
+      margin-top: 24px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(0,0,0,0.06);
+    }
+
+    /* ── INLINE IMAGES ── */
+    .post-image { margin: 36px 0; }
+
+    .post-image .img-fill {
+      width: 100%;
+      aspect-ratio: 16/10;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #6ee7b7 0%, #3b82f6 55%, #1e3a5f 100%);
+    }
+
+    /* ── CROSS LINK ── */
+    .cross-link {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      line-height: 1.6;
+      color: #555;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px 22px;
+      margin: 40px 0;
+    }
+
+    .cross-link a {
+      color: var(--accent);
+      text-decoration: underline;
+      text-decoration-color: rgba(37,99,235,0.25);
+    }
+
+    /* ── TAGS ── */
+    .post-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 52px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+    }
+
+    .tag {
+      font-size: 12px;
+      color: #555;
+      padding: 6px 14px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: var(--white);
+    }
+
+    /* ── FOOTER ── */
+    .post-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 40px 0 0;
+      margin-top: 32px;
+      border-top: 1px solid var(--border);
+      gap: 24px;
+    }
+
+    .footer-next {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 6px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .footer-project {
+      font-size: 18px;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 12px;
+    }
+
+    .f-link {
+      font-size: 13px;
+      color: #555;
+      text-decoration: none;
+      padding: 8px 18px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: var(--white);
+      transition: background 0.15s;
+    }
+    .f-link:hover { background: var(--subtle); }
+    .f-link.primary { background: var(--text); color: #fff; border-color: var(--text); }
+    .f-link.primary:hover { background: #333; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 700px) {
+      nav { padding: 16px 20px; }
+      .page { padding: 90px 20px 60px; }
+      .numbers-grid { grid-template-columns: 1fr; }
+      .post-footer { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-back">← Work</a>
+    <span class="nav-title">Regionals '26.</span>
+    <span class="nav-right">Michelle TK</span>
+  </nav>
+
+  <div class="page">
+
+    <!-- POST HEADER -->
+    <header>
+      <p class="post-kicker">Storytelling &amp; Presenting · Enactus SFU · Dec 2025 – Mar 2026</p>
+      <h1 class="post-title">From zero to 2nd place: my season as a regionals presenter</h1>
+      <p class="post-lede">In December, I put my name in for something I'd never done before. By March, I was on stage at Western Canada Regionals, and our team placed 2nd: the club's best regional result in nearly a decade. Here's what happened in the months between.</p>
+      <div class="post-byline">
+        <span>Michelle TK</span>
+        <span>·</span>
+        <span>March 2026</span>
+        <span>·</span>
+        <span>~5 min read</span>
+      </div>
+    </header>
+
+    <!-- COVER -->
+    <div class="post-cover">
+      <div class="cover-fill"></div>
+      <p class="img-caption">Add photo: on stage at Western Canada Regionals</p>
+    </div>
+
+    <!-- BODY -->
+    <div class="post-body">
+
+      <h2>Putting my name in</h2>
+      <p>Each year, Enactus SFU sends a small team to Western Canada Regionals, where the ventures the club runs throughout the year, including Unify, get presented on stage in front of a room of judges from companies like RBC. Presenting isn't reserved for the people who built the venture. The club opens it up to anyone willing to put in the work, and this year that meant about 60 people applied for 8 spots.</p>
+      <p>I think the honest reason I applied is that I'm bad at saying no to things that scare me a little. Public speaking was never something I was naturally good at, but it was something I was curious about: what does it actually take to get good at this, on a deadline, with people watching? Regionals seemed like the fastest way to find out.</p>
+      <p>I didn't have a strong case for why it should be me. I'd done class presentations and the occasional pitch, but nothing with judges, a strict clock, and a result the rest of the club would actually feel. When I found out I'd been selected, the feeling wasn't really "I earned this." It was closer to "okay, now I have to figure out how to do this."</p>
+
+      <h2>Writing something meant to be said out loud</h2>
+      <p>The work split into two halves: what we'd say, and how we'd say it. A dedicated designer handled the visual side, building the slides and materials that would sit behind us on stage. My side was the script and the delivery, and I took ownership of both, from early drafts through to the final run.</p>
+      <p>Writing for the stage turned out to be its own skill, and not one I had yet. My first drafts read like reports: dense, long, and full of phrasing that looks fine on a page and falls apart the moment you try to say it out loud. Coaches pushed on structure first: what to lead with, what to cut, and where the actual story was buried under context nobody needed. A lot of those early sessions weren't about polishing what I had. They were about finding the version of the material that worked as something spoken rather than something written.</p>
+
+      <h2>Rehearsing until it stopped sounding memorized</h2>
+      <div class="post-image">
+        <div class="img-fill"></div>
+        <p class="img-caption">Add photo: a rehearsal or practice session</p>
+      </div>
+      <p>Once the script existed, the real work started: saying it, over and over, until it stopped sounding like something I'd memorized and started sounding like something I actually meant.</p>
+      <p>Some of that was repetition. Some of it was recording run-throughs and watching them back, which is uncomfortable in a specific way: hearing your own filler words and watching your own nervous habits on a screen isn't fun. But it was the fastest way to fix them. As the weeks went on, the feedback got more specific. Early notes were about what I was saying. Later notes were about pacing, where to pause, and where to let a line sit instead of rushing into the next one.</p>
+      <p>Not every rehearsal felt like progress. Some sessions were genuinely rough, the kind where you walk out feeling like you've gone backwards. What kept it moving was treating each one as information rather than a verdict. If something didn't land, that was just data for the next run.</p>
+
+      <h2>Regionals</h2>
+      <div class="post-image">
+        <div class="img-fill"></div>
+        <p class="img-caption">Add photo: the team at Western Canada Regionals</p>
+      </div>
+      <p>By the time we got to Western Canada Regionals, I'd run through the presentation enough times that walking on stage felt less like a performance and more like saying something I already knew how to say. That doesn't mean the nerves were gone. They weren't. But they were nerves about the moment itself, not about whether I'd remember what came next, and that difference mattered more than I expected.</p>
+
+      <h2>Second place</h2>
+      <p>We placed 2nd, contributing to $5,000+ in prize winnings for the club and the best regional result Enactus SFU has had in nearly a decade.</p>
+
+      <div class="numbers-box">
+        <p class="numbers-label">The season, in numbers</p>
+        <div class="numbers-grid">
+          <div class="number-item">
+            <span class="num">60+</span>
+            <span class="desc">applicants for 8 presenter spots</span>
+          </div>
+          <div class="number-item">
+            <span class="num">1 of 8</span>
+            <span class="desc">selected to represent Enactus SFU at Regionals</span>
+          </div>
+          <div class="number-item">
+            <span class="num">2nd</span>
+            <span class="desc">place at Western Canada Regionals</span>
+          </div>
+          <div class="number-item">
+            <span class="num">$5,000+</span>
+            <span class="desc">contributed to the club's prize winnings</span>
+          </div>
+        </div>
+        <p class="numbers-footnote">Best regional result for Enactus SFU in nearly a decade.</p>
+      </div>
+
+      <p>For a club that had been working toward a result like this for years, it landed as more than a number. It was confirmation that the work the venture teams put in all year, and the work that went into presenting it, actually came through on stage.</p>
+
+      <div class="cross-link">Most of what I talked about on stage came from the work behind Unify, an Enactus venture I also worked on. <a href="unify.html">Read about that here →</a></div>
+
+      <h2>What this season actually taught me</h2>
+      <p>The biggest shift wasn't really about presenting. It was about how I responded to not being good at something yet. Going from zero competition experience to a podium finish in one season only worked because I treated every rough rehearsal, every piece of blunt feedback, and every uncomfortable watch-back of my own delivery as something to learn from rather than something to get defensive about.</p>
+      <p class="pull">That's the part I'm carrying past this season: a willingness to be visibly bad at something in front of people whose feedback I actually want, because that's the fastest way to stop being bad at it.</p>
+
+    </div>
+
+    <!-- TAGS -->
+    <div class="post-tags">
+      <span class="tag">Public Speaking</span>
+      <span class="tag">Storytelling</span>
+      <span class="tag">Competition</span>
+      <span class="tag">Personal Growth</span>
+      <span class="tag">Enactus SFU</span>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="post-footer">
+      <div>
+        <div class="footer-next">Next</div>
+        <div class="footer-project">unify.</div>
+      </div>
+      <div class="footer-links">
+        <a href="index.html" class="f-link">← All work</a>
+        <a href="unify.html" class="f-link primary">unify. →</a>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
