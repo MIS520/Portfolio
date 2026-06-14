@@ -148,14 +148,80 @@
       padding: 80px 48px 120px;
     }
 
+    /* ── INTRO PANELS ── */
+    .intro-row {
+      display: flex;
+      align-items: stretch;
+      gap: 16px;
+      max-width: 1080px;
+      margin: 0 auto 56px;
+    }
+
+    .intro-panel {
+      background: var(--dark-2);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 4px;
+      padding: 32px;
+    }
+
+    .intro-about { flex: 0 0 30%; }
+    .intro-why { flex: 1; }
+
+    .intro-label {
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 24px;
+    }
+
+    .intro-facts {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .fact-key {
+      display: block;
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 4px;
+    }
+
+    .fact-val {
+      font-size: 14px;
+      line-height: 1.5;
+      color: rgba(255,255,255,0.8);
+    }
+
+    .fact-val a {
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+      transition: border-color 0.2s;
+    }
+
+    .fact-val a:hover { border-color: rgba(255,255,255,0.6); }
+
+    .intro-text {
+      font-size: 15px;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.55);
+      max-width: 620px;
+    }
+
+    .intro-text + .intro-text { margin-top: 14px; }
+
     /* ── FEATURED ── */
     .featured-label {
-      text-align: center;
+      max-width: 1080px;
+      margin: 0 auto 32px;
       font-size: 13px;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: rgba(255,255,255,0.3);
-      margin-bottom: 60px;
     }
 
     .project-grid {
@@ -388,6 +454,9 @@
       nav { padding: 20px 24px; }
       .hero { min-height: auto; padding: 120px 24px 40px; }
       .dark-section { padding: 60px 24px 80px; }
+      .intro-row { flex-direction: column; margin-bottom: 32px; }
+      .intro-about { flex: 1; }
+      .intro-panel { padding: 24px; }
       .project-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
       .project-grid .project-card { aspect-ratio: 4/3; grid-row: span 1 !important; }
       .contact-inner { flex-direction: column; align-items: flex-start; }
