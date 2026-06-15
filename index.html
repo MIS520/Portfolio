@@ -4,19 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Michelle So. · Portfolio</title>
-  <link rel="stylesheet" href="css/index.css" />
+  <link rel="stylesheet" href="css/index.css?v=15" />
 </head>
 <body>
-
-  <!-- NAV -->
-  <nav>
-    <a href="#" class="nav-logo">Michelle So.</a>
-    <ul class="nav-links">
-      <li><a href="#featured">Work</a></li>
-      <li><a href="#contact">About</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
 
   <!-- DARK: FEATURED -->
   <section class="dark-section" id="featured">
@@ -24,32 +14,42 @@
     <div class="hero-grid">
 
       <!-- LEFT: name + facts -->
-      <div class="hero-left">
+      <div class="hero-left" id="heroLeft">
         <h1 class="hero-name">
-          <span class="hero-greeting">Hi, I'm</span>
+          <span class="hero-greeting">Hi, I'm</span><br />
           Michelle<br />So.
         </h1>
 
         <div class="intro-facts">
           <div class="intro-fact">
-            <span class="fact-key">Based in</span>
-            <span class="fact-val placeholder">[Add city/region]</span>
+            <span class="fact-key">Currently</span>
+            <span class="fact-val">VP of Innovation @ Enactus SFU</span>
           </div>
           <div class="intro-fact">
             <span class="fact-key">Studying at</span>
-            <span class="fact-val">Simon Fraser University, <span class="placeholder">[Add program &amp; year]</span></span>
+            <span class="fact-val">Simon Fraser University, Joint Major in IAT + Business</span>
           </div>
-          <div class="intro-fact">
-            <span class="fact-key">Currently</span>
-            <span class="fact-val placeholder">[Add current role or position]</span>
+
+          <div class="intro-more" id="introMore">
+            <div class="intro-fact">
+              <span class="fact-key">Concentrating in</span>
+              <span class="fact-val"> <a href="https://www.sfu.ca/beedie/programs/undergraduate/bba-major/concentrations.html#mis" target="_blank"> Management Information Systems </a>, <a href="https://www.sfu.ca/siat/programs/undergraduate/prospective-students/degrees/concentrations.html"  target="_blank">AI and Data Sci. for Human-Centered Systems, Designing Interactions</a></span>
+            </div>
+            <div class="intro-fact">
+              <span class="fact-key">Often</span>
+              <span class="fact-val">Hiking, playing mahjong, or griefing in Valorant.</span>
+            </div>
+            <div class="intro-fact">
+              <span class="fact-key">Contact</span>
+              <span class="fact-val"><a href="mailto:xsmichelletk@gmail.com">xsmichelletk@gmail.com</a></span>
+              <span class="fact-val"><a href="www.linkedin.com/in/michelle-so-221680295">LinkedIn</a></span>
+            </div>
           </div>
-          <div class="intro-fact">
-            <span class="fact-key">Interests</span>
-            <span class="fact-val placeholder">[Add interests]</span>
-          </div>
-          <div class="intro-fact">
-            <span class="fact-key">Contact</span>
-            <span class="fact-val"><a href="mailto:xsmichelletk2@gmail.com">xsmichelletk2@gmail.com</a></span>
+
+          <div class="intro-expand" id="introExpand">
+            <button class="intro-toggle" id="introToggle" type="button" aria-expanded="false" aria-controls="introMore" aria-label="Show more information">
+              <span class="intro-toggle-icon"></span>
+            </button>
           </div>
         </div>
       </div>
@@ -58,13 +58,11 @@
       <div class="hero-right">
 
         <div class="intro-why">
-          <p class="intro-label">Why</p>
-          <p class="intro-text">Most of what's here started with a question I couldn't let go of. With Unify, it was hearing the same confusion from newcomer after newcomer. With Banking on Investment, it was wanting to know why some banks' AI spending showed up in their numbers and others' didn't.</p>
-          <p class="intro-text">I like the part of product work where data explains what's actually happening, design turns that into something people can use, and the business case makes it worth building. That overlap is where I want to spend an internship: learning how it holds up outside a classroom.</p>
+          <p class="intro-text">AI-forward. Bringing <strong>data, design, and business</strong> together for humans. Using tech for good.</p>
         </div>
 
         <div class="featured-block">
-          <h2 class="featured-heading">featured</h2>
+          <h2 class="featured-heading">Featured</h2>
 
           <div class="project-grid">
 
@@ -77,12 +75,12 @@
               <div class="card-blob">
                 <div class="blob-shape"></div>
                 <div class="blob-image">
-                  <img src="images/unify.jpg" alt="" />
+                  <img src="images/mockups/unify-phone.png" alt="" />
                 </div>
               </div>
               <div class="card-info">
-                <div class="card-name">unify.</div>
-                <div class="card-tag">Strategy &amp; Partnerships</div>
+                <div class="card-name">Unify</div>
+                <div class="card-tag">Strategy + Partnerships</div>
               </div>
             </a>
 
@@ -95,12 +93,12 @@
               <div class="card-blob">
                 <div class="blob-shape"></div>
                 <div class="blob-image">
-                  <img src="images/contact-hub.jpg" alt="" />
+                  <img src="images/mockups/contact-hub-phone.png" alt="" />
                 </div>
               </div>
               <div class="card-info">
-                <div class="card-name">Contact Hub.</div>
-                <div class="card-tag">User Research · Stakeholder Communication</div>
+                <div class="card-name">Contact Hub</div>
+                <div class="card-tag">User Research + Stakeholder Communication</div>
               </div>
             </a>
 
@@ -113,12 +111,12 @@
               <div class="card-blob">
                 <div class="blob-shape"></div>
                 <div class="blob-image">
-                  <img src="images/banking-investment.jpg" alt="" />
+                  <img src="images/mockups/banking-investment-macbook.png" alt="" />
                 </div>
               </div>
               <div class="card-info">
-                <div class="card-name">Banking on Investment.</div>
-                <div class="card-tag">Data Analysis &amp; Storytelling</div>
+                <div class="card-name">Banking on Investment</div>
+                <div class="card-tag">Data Analysis + Storytelling</div>
               </div>
             </a>
 
@@ -131,12 +129,12 @@
               <div class="card-blob">
                 <div class="blob-shape"></div>
                 <div class="blob-image">
-                  <img src="images/regionals.jpg" alt="" />
+                  <img src="images/mockups/mic.png" alt="" />
                 </div>
               </div>
               <div class="card-info">
-                <div class="card-name">Regionals '26.</div>
-                <div class="card-tag">Storytelling &amp; Presenting</div>
+                <div class="card-name">Regionals '26</div>
+                <div class="card-tag">Storytelling + Presenting</div>
               </div>
             </a>
 
@@ -148,30 +146,20 @@
     </div>
   </section>
 
-  <!-- CONTACT -->
-  <section class="contact-section" id="contact">
-    <div class="contact-inner">
-      <div class="contact-left">
-        <h2>Let's talk.</h2>
-        <p>Open to internship roles, collaborations, or a good conversation about products.</p>
-      </div>
-      <div class="contact-links">
-        <a href="mailto:xsmichelletk2@gmail.com" class="contact-link">
-          <span>Email</span> xsmichelletk2@gmail.com
-        </a>
-        <a href="https://linkedin.com" target="_blank" class="contact-link">
-          <span>LinkedIn</span> /in/michelle
-        </a>
-        <a href="https://read.cv" target="_blank" class="contact-link">
-          <span>CV</span> read.cv/michelle
-        </a>
-      </div>
-    </div>
-    <div class="contact-footer">
-      <p>Michelle So., 2026</p>
-      <p>Building at the intersection of data, design, and business.</p>
-    </div>
-  </section>
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <p>made with claude, figma, and passion</p>
+  </footer>
+
+  <script>
+    const heroLeft = document.getElementById('heroLeft');
+    const introToggle = document.getElementById('introToggle');
+
+    introToggle.addEventListener('click', () => {
+      const isOpen = heroLeft.classList.toggle('open');
+      introToggle.setAttribute('aria-expanded', String(isOpen));
+    });
+  </script>
 
 </body>
 </html>
