@@ -370,13 +370,13 @@
 
     /* Contact Hub mockup has a wider native aspect ratio than the Unify
        mockup, so "contain" renders it larger. Crop it to the same
-       width/height box that the Unify mockup occupies. */
+       width/height box that the Unify mockup occupies. #abcd
     .card-ch .blob-image img {
       width: 70%;
       height: 100%;
       object-fit: cover;
       margin: 0 auto;
-    }
+    }*/
 
     /* Per-project gradients */
     .card-unify  .blob-shape { background: radial-gradient(ellipse at 40% 50%, #fdba74, #ea580c, #7c2d12); }
@@ -392,10 +392,10 @@
     }
 
     /* Banking on Investment has a two-line title, which takes up more
-       vertical space, so lift its blob a bit higher than Regionals' */
+       vertical space, so lift its blob a bit higher than Regionals' #abcd
     .card-boi .card-blob {
       bottom: 50%;
-    }
+    }*/
 
     .card-boi .blob-shape,
     .card-boi .blob-image,
