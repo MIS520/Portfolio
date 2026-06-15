@@ -167,19 +167,19 @@
       color: #555;
     }
 
-    /* Visual placeholder */
-    .ov-visual {
+    /* Visual placeholder #abcd */
+    .ov-visual { 
       position: relative;
       width: 100%;
-      aspect-ratio: 16/9;
+      aspect-ratio: 16/10;
       border-radius: 8px;
-      background: linear-gradient(135deg, #7c2d12 0%, #fb923c 50%, #fde68a 100%);
+      /* background: linear-gradient(135deg, #7c2d12 0%, #fb923c 50%, #fde68a 100%); */
       margin-bottom: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
-    }
+    } 
 
     .ov-visual img {
       position: absolute;
