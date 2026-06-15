@@ -3,7 +3,7 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #f5f4f0;
+      --bg: #ffffff;
       --white: #ffffff;
       --border: #e5e4e0;
       --text: #111;
@@ -109,10 +109,11 @@
     }
 
     .cover-fill {
+      display: block;
       width: 100%;
       aspect-ratio: 16/9;
       border-radius: 14px;
-      background: linear-gradient(135deg, #1e3a5f 0%, #3b82f6 55%, #6ee7b7 100%);
+      object-fit: cover;
     }
 
     .img-caption {
@@ -208,10 +209,11 @@
     .post-image { margin: 36px 0; }
 
     .post-image .img-fill {
+      display: block;
       width: 100%;
       aspect-ratio: 16/10;
       border-radius: 12px;
-      background: linear-gradient(135deg, #6ee7b7 0%, #3b82f6 55%, #1e3a5f 100%);
+      object-fit: cover;
     }
 
     /* ── CROSS LINK ── */

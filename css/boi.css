@@ -3,7 +3,7 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #f5f4f0;
+      --bg: #ffffff;
       --white: #ffffff;
       --border: #e5e4e0;
       --text: #111;
@@ -169,6 +169,7 @@
 
     /* Visual placeholder */
     .ov-visual {
+      position: relative;
       width: 100%;
       aspect-ratio: 16/9;
       border-radius: 8px;
@@ -181,6 +182,8 @@
     }
 
     .ov-visual img {
+      position: absolute;
+      inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -194,15 +197,19 @@
       color: rgba(255,255,255,0.45);
     }
 
-    /* Context section placeholder image */
+    /* Context section site screenshot */
     .context-visual {
+      position: relative;
       width: 100%;
       aspect-ratio: 3/2;
       border-radius: 8px;
       overflow: hidden;
+      background: linear-gradient(135deg, #7c2d12 0%, #fb923c 50%, #fde68a 100%);
     }
 
     .context-visual img {
+      position: absolute;
+      inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;

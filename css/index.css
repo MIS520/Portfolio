@@ -239,25 +239,12 @@
 
     /* ── FEATURED ── */
     .featured-heading {
-      position: relative;
       font-family: 'Playfair Display', serif;
       font-weight: 700;
       font-size: clamp(22px, 2.6vw, 32px);
       letter-spacing: -0.01em;
       color: #fff;
       margin-bottom: 20px;
-      padding-bottom: 12px;
-    }
-
-    .featured-heading::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 40px;
-      height: 3px;
-      border-radius: 2px;
-      background: var(--accent);
     }
 
     .project-grid {
@@ -381,6 +368,16 @@
       display: block;
     }
 
+    /* Contact Hub mockup has a wider native aspect ratio than the Unify
+       mockup, so "contain" renders it larger. Crop it to the same
+       width/height box that the Unify mockup occupies. */
+    .card-ch .blob-image img {
+      width: 70%;
+      height: 100%;
+      object-fit: cover;
+      margin: 0 auto;
+    }
+
     /* Per-project gradients */
     .card-unify  .blob-shape { background: radial-gradient(ellipse at 40% 50%, #fdba74, #ea580c, #7c2d12); }
     .card-ch     .blob-shape { background: radial-gradient(ellipse at 60% 40%, #93c5fd, #2563eb, #1e3a8a); }
@@ -394,11 +391,35 @@
       bottom: 42%;
     }
 
+    /* Banking on Investment has a two-line title, which takes up more
+       vertical space, so lift its blob a bit higher than Regionals' */
+    .card-boi .card-blob {
+      bottom: 50%;
+    }
+
     .card-boi .blob-shape,
     .card-boi .blob-image,
     .card-reg .blob-shape,
     .card-reg .blob-image {
-      width: 70%;
+      width: 50%;
+      top: auto;
+      bottom: 0;
+      transform: translateX(-50%);
+    }
+
+    /* Icon treatment for boi/reg: center a small icon within the blob
+       instead of stretching an image to fill it */
+    .card-boi .blob-image,
+    .card-reg .blob-image {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card-boi .blob-image img,
+    .card-reg .blob-image img {
+      width: 40%;
+      height: auto;
     }
 
     /* Card info overlay */
